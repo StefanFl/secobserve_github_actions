@@ -20,6 +20,8 @@ done
 
 echo $REPORT_NAME
 echo $TARGET
+echo $PWD
+echo $HOME
 
 # cd "$RUN_DIRECTORY"
 bandit $FURTHER_PARAMETERS --format sarif --output "$HOME/$REPORT_NAME" --exit-zero --recursive "$TARGET"
