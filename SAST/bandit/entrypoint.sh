@@ -22,7 +22,7 @@ echo $REPORT_NAME
 echo $TARGET
 
 # cd "$RUN_DIRECTORY"
-bandit $FURTHER_PARAMETERS --format sarif --output "$REPORT_NAME" --exit-zero --recursive "$TARGET"
+bandit $FURTHER_PARAMETERS --format sarif --output "$HOME/$REPORT_NAME" --exit-zero --recursive "$TARGET"
 # cd "$GITHUB_WORKSPACE"
 
 exit 0
