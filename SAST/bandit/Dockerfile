@@ -10,7 +10,7 @@ COPY requirements.txt /
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY entrypoint.sh /
-RUN chmod +x /entrypoint.sh
+RUN chmod ugo+x entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 
 USER ${user}
