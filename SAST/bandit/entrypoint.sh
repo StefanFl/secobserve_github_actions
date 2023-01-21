@@ -18,8 +18,11 @@ while getopts "t:r:d:p:" o; do
   esac
 done
 
+echo $REPORT_NAME
+echo $TARGET
+
 # cd "$RUN_DIRECTORY"
-bandit $FURTHER_PARAMETERS --format sarif --output "$GITHUB_WORKSPACE/$REPORT_NAME" --exit-zero --recursive "$TARGET"
+bandit $FURTHER_PARAMETERS --format sarif --output "$REPORT_NAME" --exit-zero --recursive "$TARGET"
 # cd "$GITHUB_WORKSPACE"
 
 exit 0
