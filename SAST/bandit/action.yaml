@@ -2,18 +2,18 @@ name: 'SecObserve Bandit'
 description: 'Scans Python code for vulnerabilities with Bandit'
 author: 'MaibornWolff'
 inputs:
-  TARGET:
+  target:
     description: 'The target to be scanned, here the path of the filesystem'
     required: true
     default: '.'
-  REPORT_NAME:
+  report_name:
     description: 'The name of the report to be written.'
     required: true
-  RUN_DIRECTORY:
+  run_directory:
     description: 'The directory where to run the scanner.'
     required: false
     default: '.'
-  FURTHER_PARAMETERS:
+  further_parameters:
     description: 'Further parameters to be given to the scanner.'
     required: false
     default: ''
@@ -21,8 +21,8 @@ inputs:
 runs:
   using: 'docker'
   image: "Dockerfile"
-  args:
-    - '-t ${{ inputs.TARGET }}'
-    - '-r ${{ inputs.REPORT_NAME }}'
-    - '-d ${{ inputs.RUN_DIRECTORY }}'
-    - '-p ${{ inputs.FURTHER_PARAMETERS }}'
+  env:
+    INPUT_TARGET: ${{ inputs.target }}
+    INPUT_REPORT_NAME: ${{ inputs.report_name }}
+    INPUT_RUN_DIRECTORY: ${{ inputs.run_directory }}
+    INPUT_FURTHER_PARAMETERS: ${{ inputs.further_parameters }}
