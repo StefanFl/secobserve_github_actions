@@ -1,5 +1,6 @@
 FROM stefanfle/secobserve-scanners:latest
 
-COPY entrypoint.sh /
+WORKDIR /
+COPY entrypoint.sh .
 RUN chmod +x entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
