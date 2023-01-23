@@ -1,7 +1,4 @@
-FROM python:3.11.1-alpine
-
-COPY requirements.txt /
-RUN pip install --no-cache-dir -r requirements.txt
+FROM stefanfle/secobserve-scanners:latest
 
 COPY entrypoint.sh /
 RUN chmod +x entrypoint.sh
