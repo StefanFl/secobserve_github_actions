@@ -3,7 +3,7 @@ description: 'Scans infrastructure code for vulnerabilities with Semgrep'
 author: 'MaibornWolff'
 inputs:
   target:
-    description: 'The target to be scanned, here the path of the filesystem'
+    description: 'The target to be scanned, here a path of the filesystem.'
     required: true
     default: '.'
   report_name:
