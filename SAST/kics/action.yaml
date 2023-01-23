@@ -1,0 +1,28 @@
+name: 'SecObserve Semgrep'
+description: 'Scans source code for vulnerabilities with Semgrep'
+author: 'MaibornWolff'
+inputs:
+  target:
+    description: 'The target to be scanned, here the path of the filesystem'
+    required: true
+    default: '.'
+  report_name:
+    description: 'The name of the report to be written.'
+    required: true
+  run_directory:
+    description: 'The directory where to run the scanner.'
+    required: false
+    default: '.'
+  further_parameters:
+    description: 'Further parameters to be given to the scanner.'
+    required: false
+    default: ''
+
+runs:
+  using: 'docker'
+  image: "Dockerfile"
+  env:
+    INPUT_TARGET: ${{ inputs.target }}
+    INPUT_REPORT_NAME: ${{ inputs.report_name }}
+    INPUT_RUN_DIRECTORY: ${{ inputs.run_directory }}
+    INPUT_FURTHER_PARAMETERS: ${{ inputs.further_parameters }}
