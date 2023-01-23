@@ -1,0 +1,23 @@
+name: 'SecObserve SSLyze'
+description: 'Scans TLS encryption for vulnerabilities with SSLyze'
+author: 'MaibornWolff'
+inputs:
+  target:
+    description: 'The target to be scanned, here a hostname.'
+    required: true
+    default: '.'
+  report_name:
+    description: 'The name of the report to be written.'
+    required: true
+  further_parameters:
+    description: 'Further parameters to be given to the scanner.'
+    required: false
+    default: ''
+
+runs:
+  using: 'docker'
+  image: "Dockerfile"
+  env:
+    INPUT_TARGET: ${{ inputs.target }}
+    INPUT_REPORT_NAME: ${{ inputs.report_name }}
+    INPUT_FURTHER_PARAMETERS: ${{ inputs.further_parameters }}
