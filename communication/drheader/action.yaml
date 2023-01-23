@@ -1,0 +1,28 @@
+name: 'SecObserve DrHeader'
+description: 'Scans HTTP headers for vulnerabilities with DrHeader'
+author: 'MaibornWolff'
+inputs:
+  target:
+    description: 'The target to be scanned, here a URL.'
+    required: true
+    default: '.'
+  report_name:
+    description: 'The name of the report to be written.'
+    required: true
+  rules:
+    description: 'Custom rules to be used with DrHeader.'
+    required: false
+    default: '.'
+  further_parameters:
+    description: 'Further parameters to be given to the scanner.'
+    required: false
+    default: ''
+
+runs:
+  using: 'docker'
+  image: "Dockerfile"
+  env:
+    INPUT_TARGET: ${{ inputs.target }}
+    INPUT_REPORT_NAME: ${{ inputs.report_name }}
+    INPUT_RULES: ${{ inputs.rules }}
+    INPUT_FURTHER_PARAMETERS: ${{ inputs.further_parameters }}
