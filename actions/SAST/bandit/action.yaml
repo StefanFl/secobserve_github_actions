@@ -27,4 +27,4 @@ runs:
     REPORT_NAME: ${{ inputs.report_name }}
     RUN_DIRECTORY: ${{ inputs.run_directory }}
     FURTHER_PARAMETERS: ${{ inputs.further_parameters }}
-    WORKSPACE: ${{ vars.GITHUB_WORKSPACE }}
+    WORKSPACE: ${{ env.GITHUB_WORKSPACE }}
