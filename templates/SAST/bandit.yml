@@ -1,6 +1,7 @@
 .bandit:
   image:
     name: $CI_REGISTRY/department-csec/secobserve/secobserve_gitlab_includes/secobserve_scanners:latest
+    entrypoint: ["/entrypoints/entrypoint_bandit.sh"]
   stage: test
   variables:
     FURTHER_PARAMETERS: ""
@@ -8,15 +9,6 @@
     SO_UPLOAD: "true"
     SO_PARSER_NAME: "Sarif"
     SO_FILE_NAME: "$REPORT_NAME"
-
-  script:
-    - cd "$RUN_DIRECTORY"
-    - bandit $FURTHER_PARAMETERS --format sarif --output "$CI_PROJECT_DIR/$REPORT_NAME" --exit-zero --recursive "$TARGET"
-    - cd "$CI_PROJECT_DIR"
-    - >
-      if [ "$SO_UPLOAD" == "true" ]; then
-        file_upload_observations.sh
-      fi
   interruptible: true
   allow_failure: true
   artifacts:
