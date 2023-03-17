@@ -8,16 +8,8 @@
     SO_UPLOAD: "true"
     SO_PARSER_NAME: "Sarif"
     SO_FILE_NAME: "$REPORT_NAME"
-
   script:
-    - cd "$RUN_DIRECTORY"
-    - checkov $FURTHER_PARAMETERS --quiet --compact --soft-fail --directory "$TARGET" --output sarif
-    - mv results.sarif "$CI_PROJECT_DIR/$REPORT_NAME"
-    - cd "$CI_PROJECT_DIR"
-    - >
-      if [ "$SO_UPLOAD" == "true" ]; then
-        file_upload_observations.sh
-      fi
+    - /entrypoints/entrypoint_checkov.sh
   interruptible: true
   allow_failure: true
   artifacts:
