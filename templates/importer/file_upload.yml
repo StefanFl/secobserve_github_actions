@@ -1,0 +1,9 @@
+.file_upload:
+  image:
+    name: $CI_REGISTRY/department-csec/secobserve/secobserve_gitlab_includes/importer:latest
+  stage: upload
+  variables:
+    GIT_STRATEGY: none
+  script:
+    - file_upload_observations.sh
+  allow_failure: true

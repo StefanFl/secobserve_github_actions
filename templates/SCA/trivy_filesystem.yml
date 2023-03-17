@@ -1,0 +1,34 @@
+.trivy_filesystem:
+  image:
+    name: $CI_REGISTRY/department-csec/secobserve/secobserve_gitlab_includes/secobserve_scanners:latest
+  stage: test
+  variables:
+    FURTHER_PARAMETERS: ""
+    TRIVY_NO_PROGRESS: "true"
+    TRIVY_CACHE_DIR: "/usr/local/trivy/trivycache/"
+    RUN_DIRECTORY: "."
+    SO_UPLOAD: "true"
+    SO_PARSER_NAME: "CycloneDX"
+    SO_FILE_NAME: "$REPORT_NAME"
+  script:
+    - cd "$RUN_DIRECTORY"
+    # cache cleanup is needed when scanning images with the same tags, it does not remove the database
+    - trivy filesystem --clear-cache
+    # update vulnerabilities db
+    - trivy filesystem --download-db-only
+    # Builds report and puts it in the default workdir $CI_PROJECT_DIR, so `artifacts:` can take it from there
+    - trivy filesystem $FURTHER_PARAMETERS --exit-code 0 --format cyclonedx --security-checks vuln --output "$CI_PROJECT_DIR/$REPORT_NAME" "$TARGET"
+    - cd "$CI_PROJECT_DIR"
+    - >
+      if [ "$SO_UPLOAD" == "true" ]; then
+        file_upload_observations.sh
+      fi
+  interruptible: true
+  allow_failure: true
+  cache:
+    paths:
+      - /usr/local/trivy/trivycache/
+  artifacts:
+    when: always
+    paths: 
+      - "$REPORT_NAME"

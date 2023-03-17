@@ -1,0 +1,24 @@
+.kics:
+  image:
+    name: $CI_REGISTRY/department-csec/secobserve/secobserve_gitlab_includes/secobserve_scanners:latest
+  stage: test
+  variables:
+    FURTHER_PARAMETERS: ""
+    RUN_DIRECTORY: "."
+    SO_UPLOAD: "true"
+    SO_PARSER_NAME: "Sarif"
+    SO_FILE_NAME: "$REPORT_NAME"
+  script:
+    - cd "$RUN_DIRECTORY"
+    - kics scan $FURTHER_PARAMETERS --no-progress --ignore-on-exit results --queries-path /usr/local/kics/queries --path "$TARGET" --report-formats sarif --output-path . --output-name "$CI_PROJECT_DIR/$REPORT_NAME"
+    - cd "$CI_PROJECT_DIR"
+    - >
+      if [ "$SO_UPLOAD" == "true" ]; then
+        file_upload_observations.sh
+      fi
+  interruptible: true
+  allow_failure: true
+  artifacts:
+    when: always
+    paths: 
+      - "$REPORT_NAME"

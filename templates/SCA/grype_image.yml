@@ -1,0 +1,24 @@
+.grype_image:
+  image:
+    name: $CI_REGISTRY/department-csec/secobserve/secobserve_gitlab_includes/secobserve_scanners:latest
+  stage: test
+  variables:
+    GIT_STRATEGY: none
+    FURTHER_PARAMETERS: ""
+    SO_UPLOAD: "true"
+    SO_PARSER_NAME: "CycloneDX"
+    SO_FILE_NAME: "$REPORT_NAME"
+  script:
+    - cd "$CI_PROJECT_DIR"
+    - docker pull "$TARGET"
+    - grype docker:"$TARGET" $FURTHER_PARAMETERS --output cyclonedx-json --file "$REPORT_NAME"
+    - >
+      if [ "$SO_UPLOAD" == "true" ]; then
+        file_upload_observations.sh
+      fi
+  interruptible: true
+  allow_failure: true
+  artifacts:
+    when: always
+    paths: 
+      - "$REPORT_NAME"

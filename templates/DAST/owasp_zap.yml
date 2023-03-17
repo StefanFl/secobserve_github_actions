@@ -1,0 +1,25 @@
+.owasp_zap:
+  image:
+    name: $CI_REGISTRY/department-csec/secobserve/secobserve_gitlab_includes/secobserve_zap:latest
+  stage: post_deploy
+  variables:
+    GIT_STRATEGY: none
+    FURTHER_PARAMETERS: ""
+    SCRIPT: "zap-baseline.py"
+    SO_UPLOAD: "true"
+    SO_PARSER_NAME: "OWASP ZAP"
+    SO_FILE_NAME: "$REPORT_NAME"
+  script:
+    - mkdir /zap/wrk
+    - /zap/$SCRIPT -t "$TARGET" $FURTHER_PARAMETERS -J "$REPORT_NAME" || true
+    - cp /zap/wrk/"$REPORT_NAME" .
+    - >
+      if [ "$SO_UPLOAD" == "true" ]; then
+        file_upload_observations.sh
+      fi
+  interruptible: true
+  allow_failure: true
+  artifacts:
+    when: always
+    paths: 
+      - "$REPORT_NAME"

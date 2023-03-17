@@ -1,0 +1,35 @@
+{
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "extends": [
+        "config:base"
+    ],
+    "baseBranches": [
+        "dev"
+    ],
+    "binarySource": "install",
+    "branchConcurrentLimit": 10,
+    "dependencyDashboard": false,
+    "dependencyDashboardApproval": false,
+    "labels": [
+        "dependencies"
+    ],
+    "lockFileMaintenance": {
+        "enabled": true
+    },
+    "prHourlyLimit": 10,
+    "rebaseWhen": "conflicted",
+    "gitlabci": {
+        "fileMatch": [
+            "^templates/SAST/.+\\.yml$",
+            "^templates/SCA/.+\\.yml$"
+        ]
+    },
+    "packageRules": [
+        {
+            "matchPackageNames": [
+                "node"
+            ],
+            "allowedVersions": "<19"
+        }
+    ]
+}
