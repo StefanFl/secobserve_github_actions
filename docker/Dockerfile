@@ -68,7 +68,9 @@ COPY importer/ ./
 
 # Copy entrypoints and set PATH
 WORKDIR /entrypoints
-COPY ./docker/entrypoints/* .
+COPY ./docker/entrypoints/ ./
 ENV PATH="/usr/local/gitleaks:/usr/local/grype:/usr/local/kics/bin:/usr/local/trivy:/usr/local/importer/bin:$PATH"
+
+WORKDIR /
 
 RUN mkdir -p -m a=rwx /tmp
