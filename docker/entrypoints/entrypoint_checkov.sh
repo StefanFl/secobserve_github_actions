@@ -11,9 +11,9 @@ else
   WORKSPACE="${GITHUB_WORKSPACE}"
 fi
 
-cd "$INPUT_RUN_DIRECTORY"
-checkov $INPUT_FURTHER_PARAMETERS --quiet --compact --soft-fail --directory "$INPUT_TARGET" --output sarif
-mv results.sarif "$WORKSPACE/$INPUT_REPORT_NAME"
+cd "$RUN_DIRECTORY"
+checkov $FURTHER_PARAMETERS --quiet --compact --soft-fail --directory "$TARGET" --output sarif
+mv results.sarif "$WORKSPACE/$REPORT_NAME"
 cd "$WORKSPACE"
 
 if [ "$SO_UPLOAD" == "true" ]; then
