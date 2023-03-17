@@ -1,6 +1,6 @@
 .semgrep:
   image:
-    name: $CI_REGISTRY/department-csec/secobserve/secobserve_gitlab_includes/secobserve_scanners:latest
+    name: stefanfle/secobserve-scanners:dev
   stage: test
   variables:
     FURTHER_PARAMETERS: ""
@@ -9,13 +9,7 @@
     SO_PARSER_NAME: "Semgrep"
     SO_FILE_NAME: "$REPORT_NAME"
   script:
-    - cd "$RUN_DIRECTORY"
-    - semgrep scan $FURTHER_PARAMETERS --config $CONFIGURATION --metrics off --no-error --output "$CI_PROJECT_DIR/$REPORT_NAME" --json "$TARGET"
-    - cd "$CI_PROJECT_DIR"
-    - >
-      if [ "$SO_UPLOAD" == "true" ]; then
-        file_upload_observations.sh
-      fi
+    - /entrypoints/entrypoint_semgrep.sh
   interruptible: true
   allow_failure: true
   artifacts:
