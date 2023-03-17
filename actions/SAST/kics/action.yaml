@@ -20,9 +20,10 @@ inputs:
 
 runs:
   using: 'docker'
-  image: "Dockerfile"
+  image: 'docker://stefanfle/secobserve-scanners:dev'
+  entrypoint: '/entrypoints/entrypoint_kics.sh'
   env:
-    INPUT_TARGET: ${{ inputs.target }}
-    INPUT_REPORT_NAME: ${{ inputs.report_name }}
-    INPUT_RUN_DIRECTORY: ${{ inputs.run_directory }}
-    INPUT_FURTHER_PARAMETERS: ${{ inputs.further_parameters }}
+    TARGET: ${{ inputs.target }}
+    REPORT_NAME: ${{ inputs.report_name }}
+    RUN_DIRECTORY: ${{ inputs.run_directory }}
+    FURTHER_PARAMETERS: ${{ inputs.further_parameters }}
