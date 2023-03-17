@@ -1,6 +1,6 @@
 .bandit:
   image:
-    name: $CI_REGISTRY/department-csec/secobserve/secobserve_gitlab_includes/secobserve_scanners:latest
+    name: stefanfle/secobserve_scanners:dev
     entrypoint: ["/entrypoints/entrypoint_bandit.sh"]
   stage: test
   variables:
