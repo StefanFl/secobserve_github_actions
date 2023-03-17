@@ -1,6 +1,6 @@
 .bandit:
   image:
-    name: stefanfle/secobserve_scanners:dev
+    name: stefanfle/secobserve-scanners:dev
   stage: test
   variables:
     FURTHER_PARAMETERS: ""
