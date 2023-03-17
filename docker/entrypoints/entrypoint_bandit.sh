@@ -16,7 +16,7 @@ bandit $FURTHER_PARAMETERS --format sarif --output "$WORKSPACE/$REPORT_NAME" --e
 cd "$WORKSPACE"
 
 if [ "$SO_UPLOAD" == "true" ]; then
-  file_upload_observations.sh
+  source file_upload_observations.sh
 fi
 
 exit 0
