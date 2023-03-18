@@ -1,5 +1,5 @@
-name: 'SecObserve Semgrep'
-description: 'Scans source code for vulnerabilities with Semgrep'
+name: 'SecObserve ESLint'
+description: 'Scans Javascript/Typescript code for vulnerabilities with ESLint'
 author: 'MaibornWolff'
 
 inputs:
@@ -18,18 +18,13 @@ inputs:
     description: 'Further parameters to be given to the scanner.'
     required: false
     default: ''
-  configuration:
-    description: 'Configuration to be used with Semgrep.'
-    required: true
-    default: ''
 
 runs:
   using: 'docker'
   image: 'docker://stefanfle/secobserve-scanners:dev'
-  entrypoint: '/entrypoints/entrypoint_semgrep.sh'
+  entrypoint: '/entrypoints/entrypoint_eslint.sh'
   env:
     TARGET: ${{ inputs.target }}
     REPORT_NAME: ${{ inputs.report_name }}
     RUN_DIRECTORY: ${{ inputs.run_directory }}
     FURTHER_PARAMETERS: ${{ inputs.further_parameters }}
-    CONFIGURATION: ${{ inputs.configuration }}

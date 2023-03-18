@@ -1,6 +1,7 @@
 name: 'SecObserve Checkov'
 description: 'Scans infrastructure code for vulnerabilities with Checkov'
 author: 'MaibornWolff'
+
 inputs:
   target:
     description: 'The target to be scanned, here a path of the filesystem.'

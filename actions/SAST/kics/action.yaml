@@ -1,6 +1,7 @@
 name: 'SecObserve Semgrep'
 description: 'Scans infrastructure code for vulnerabilities with Semgrep'
 author: 'MaibornWolff'
+
 inputs:
   target:
     description: 'The target to be scanned, here a path of the filesystem.'

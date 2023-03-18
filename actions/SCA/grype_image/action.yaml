@@ -1,6 +1,7 @@
 name: 'SecObserve Grype image'
 description: 'Scans Docker images for vulnerabilities with Grype'
 author: 'MaibornWolff'
+
 inputs:
   target:
     description: 'The target to be scanned, here the name of the docker image.'

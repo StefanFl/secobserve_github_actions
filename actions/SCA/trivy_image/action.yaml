@@ -1,6 +1,7 @@
 name: 'SecObserve Trivy image'
 description: 'Scans Docker images for vulnerabilities with Trivy'
 author: 'MaibornWolff'
+
 inputs:
   target:
     description: 'The target to be scanned, here the name of the docker image.'

@@ -1,35 +1,30 @@
-name: 'SecObserve Semgrep'
-description: 'Scans source code for vulnerabilities with Semgrep'
+name: 'SecObserve OWASP ZAP'
+description: 'Scans web sites and APIs with OWASP ZAP'
 author: 'MaibornWolff'
 
 inputs:
   target:
-    description: 'The target to be scanned, here a path of the filesystem.'
+    description: 'The target to be scanned, here a URL.'
     required: true
     default: '.'
   report_name:
     description: 'The name of the report to be written.'
     required: true
-  run_directory:
-    description: 'The directory where to run the scanner.'
+  script:
+    description: 'ZAP script to run.'
     required: false
-    default: '.'
+    default: 'zap-baseline.py'
   further_parameters:
     description: 'Further parameters to be given to the scanner.'
     required: false
-    default: ''
-  configuration:
-    description: 'Configuration to be used with Semgrep.'
-    required: true
     default: ''
 
 runs:
   using: 'docker'
   image: 'docker://stefanfle/secobserve-scanners:dev'
-  entrypoint: '/entrypoints/entrypoint_semgrep.sh'
+  entrypoint: '/entrypoints/entrypoint_owasp_zap.sh'
   env:
     TARGET: ${{ inputs.target }}
     REPORT_NAME: ${{ inputs.report_name }}
-    RUN_DIRECTORY: ${{ inputs.run_directory }}
+    SCRIPT: ${{ inputs.script }}
     FURTHER_PARAMETERS: ${{ inputs.further_parameters }}
-    CONFIGURATION: ${{ inputs.configuration }}
