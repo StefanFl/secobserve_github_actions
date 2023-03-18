@@ -1,6 +1,8 @@
 #!/bin/sh
 set -e
 
+export TRIVY_NO_PROGRESS=true
+
 if [[ -z "${GITHUB_WORKSPACE}" ]]; then
   if [[ -z "${CI_PROJECT_DIR}" ]]; then
     WORKSPACE=.

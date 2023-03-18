@@ -4,8 +4,6 @@
   stage: test
   variables:
     FURTHER_PARAMETERS: ""
-    TRIVY_NO_PROGRESS: "true"
-    TRIVY_CACHE_DIR: "/usr/local/trivy/trivycache/"
     RUN_DIRECTORY: "."
     SO_UPLOAD: "true"
     SO_PARSER_NAME: "CycloneDX"
@@ -14,9 +12,6 @@
     - /entrypoints/entrypoint_trivy_filesystem.sh
   interruptible: true
   allow_failure: true
-  cache:
-    paths:
-      - /usr/local/trivy/trivycache/
   artifacts:
     when: always
     paths: 

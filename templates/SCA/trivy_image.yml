@@ -5,7 +5,6 @@
   variables:
     GIT_STRATEGY: none
     FURTHER_PARAMETERS: ""
-    TRIVY_NO_PROGRESS: "true"
     SO_UPLOAD: "true"
     SO_PARSER_NAME: "CycloneDX"
     SO_FILE_NAME: "$REPORT_NAME"
@@ -13,9 +12,6 @@
     - /entrypoints/entrypoint_trivy_image.sh
   interruptible: true
   allow_failure: true
-  cache:
-    paths:
-      - /usr/local/trivy/trivycache/
   artifacts:
     when: always
     paths: 
