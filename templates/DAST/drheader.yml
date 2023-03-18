@@ -1,20 +1,16 @@
 .drheader:
   image:
-    name: $CI_REGISTRY/department-csec/secobserve/secobserve_gitlab_includes/secobserve_scanners:latest
+    name: stefanfle/secobserve-scanners:dev
   stage: post_deploy
   variables:
     GIT_STRATEGY: none
     FURTHER_PARAMETERS: ""
     RULES: "/rules.yml"
     SO_UPLOAD: "true"
-    SO_PARSER_NAME: "drHEADer"
+    SO_PARSER_NAME: "DrHeader"
     SO_FILE_NAME: "$REPORT_NAME"
   script:
-    - drheader scan single $FURTHER_PARAMETERS --no-error --rules "$RULES" --json "$TARGET" >"$REPORT_NAME"
-    - >
-      if [ "$SO_UPLOAD" == "true" ]; then
-        file_upload_observations.sh
-      fi
+    - /entrypoints/entrypoint_drheader.sh
   interruptible: true
   allow_failure: true
   artifacts:

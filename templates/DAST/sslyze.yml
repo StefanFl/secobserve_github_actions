@@ -1,6 +1,6 @@
 .sslyze:
   image:
-    name: $CI_REGISTRY/department-csec/secobserve/secobserve_gitlab_includes/secobserve_scanners:latest
+    name: stefanfle/secobserve-scanners:dev
   stage: post_deploy
   variables:
     GIT_STRATEGY: none
@@ -9,11 +9,7 @@
     SO_PARSER_NAME: "SSLyze"
     SO_FILE_NAME: "$REPORT_NAME"
   script:
-    - sslyze $FURTHER_PARAMETERS --json_out "$REPORT_NAME" "$TARGET"
-    - >
-      if [ "$SO_UPLOAD" == "true" ]; then
-        file_upload_observations.sh
-      fi
+    - /entrypoints/entrypoint_sslyze.sh
   interruptible: true
   allow_failure: true
   artifacts:
