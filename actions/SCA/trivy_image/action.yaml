@@ -19,6 +19,6 @@ runs:
   image: 'docker://stefanfle/secobserve-scanners:dev'
   entrypoint: '/entrypoints/entrypoint_trivy_image.sh'
   env:
-    INPUT_TARGET: ${{ inputs.target }}
-    INPUT_REPORT_NAME: ${{ inputs.report_name }}
-    INPUT_FURTHER_PARAMETERS: ${{ inputs.further_parameters }}
+    TARGET: ${{ inputs.target }}
+    REPORT_NAME: ${{ inputs.report_name }}
+    FURTHER_PARAMETERS: ${{ inputs.further_parameters }}
