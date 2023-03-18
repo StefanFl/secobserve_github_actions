@@ -1,6 +1,6 @@
 .file_upload:
   image:
-    name: $CI_REGISTRY/department-csec/secobserve/secobserve_gitlab_includes/importer:latest
+    name: stefanfle/secobserve-scanners:dev
   stage: upload
   variables:
     GIT_STRATEGY: none
