@@ -18,12 +18,6 @@
     },
     "prHourlyLimit": 10,
     "rebaseWhen": "conflicted",
-    "gitlabci": {
-        "fileMatch": [
-            "^templates/SAST/.+\\.yml$",
-            "^templates/SCA/.+\\.yml$"
-        ]
-    },
     "packageRules": [
         {
             "matchPackageNames": [
