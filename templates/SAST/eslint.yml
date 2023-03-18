@@ -9,17 +9,7 @@
     SO_PARSER_NAME: "Sarif"
     SO_FILE_NAME: "$REPORT_NAME"
   script:
-    - cd "$RUN_DIRECTORY"
-    - npm install
-    - npx eslint $FURTHER_PARAMETERS --ignore-pattern ./node_modules/ --format @microsoft/eslint-formatter-sarif --output-file "$CI_PROJECT_DIR/$REPORT_NAME" "$TARGET"
-    # The source files are referenced with "file://absolute_path", but we want to have relative paths,
-    # so we remove the "file://" prefix and the current directory.
-    - cd "$CI_PROJECT_DIR"
-    - sed -i "s|file:\/\/$PWD\/||g" "$CI_PROJECT_DIR/$REPORT_NAME"
-    - >
-      if [ "$SO_UPLOAD" == "true" ]; then
-        file_upload_observations.sh
-      fi
+    - /entrypoints/entrypoint_eslint.sh
   interruptible: true
   allow_failure: true
   artifacts:
