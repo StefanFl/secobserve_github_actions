@@ -1,6 +1,6 @@
 .owasp_zap:
   image:
-    name: stefanfle/secobserve-scanners:dev
+    name: stefanfle/secobserve-scanners-zap:dev
   stage: post_deploy
   variables:
     GIT_STRATEGY: none
