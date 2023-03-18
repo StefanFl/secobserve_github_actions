@@ -21,7 +21,7 @@ inputs:
 
 runs:
   using: 'docker'
-  image: 'docker://stefanfle/secobserve-scanners:dev'
+  image: 'docker://stefanfle/secobserve-scanners-zap:dev'
   entrypoint: '/entrypoints/entrypoint_owasp_zap.sh'
   env:
     TARGET: ${{ inputs.target }}
