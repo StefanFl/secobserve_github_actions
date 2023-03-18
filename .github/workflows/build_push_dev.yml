@@ -29,3 +29,11 @@ jobs:
           file: ./docker//Dockerfile
           push: true
           tags: stefanfle/secobserve-scanners:dev
+      -
+        name: Build and push OWASP ZAP
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: ./docker_zap//Dockerfile
+          push: true
+          tags: stefanfle/secobserve-scanners-zap:dev
