@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 set -e
 
 if [[ -z "${GITHUB_WORKSPACE}" ]]; then
@@ -11,7 +11,7 @@ else
   WORKSPACE="${GITHUB_WORKSPACE}"
 fi
 
-SO_FILE_NAME="${REPORT_NAME}"
+export SO_FILE_NAME="${REPORT_NAME}"
 
 cd "$RUN_DIRECTORY"
 bandit $FURTHER_PARAMETERS --format sarif --output "$WORKSPACE/$REPORT_NAME" --exit-zero --recursive "$TARGET"
