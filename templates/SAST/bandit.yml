@@ -7,7 +7,6 @@
     RUN_DIRECTORY: "."
     SO_UPLOAD: "true"
     SO_PARSER_NAME: "Sarif"
-    SO_FILE_NAME: "$REPORT_NAME"
   script:
     - /entrypoints/entrypoint_bandit.sh
   interruptible: true
