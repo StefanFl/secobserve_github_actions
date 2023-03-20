@@ -13,6 +13,9 @@ else
   WORKSPACE="${GITHUB_WORKSPACE}"
 fi
 
+export SO_FILE_NAME="${REPORT_NAME}"
+export SO_PARSER_NAME="CycloneDX"
+
 cd "$RUN_DIRECTORY"
 trivy filesystem $FURTHER_PARAMETERS --exit-code 0 --format cyclonedx --security-checks vuln --output "$WORKSPACE/$REPORT_NAME" "$TARGET"
 cd "$WORKSPACE"

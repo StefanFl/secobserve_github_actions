@@ -11,6 +11,9 @@ else
   WORKSPACE="${GITHUB_WORKSPACE}"
 fi
 
+export SO_FILE_NAME="${REPORT_NAME}"
+export SO_PARSER_NAME="CycloneDX"
+
 cd "$WORKSPACE"
 docker pull "$TARGET"
 grype docker:"$TARGET" $FURTHER_PARAMETERS --output cyclonedx-json --file "$REPORT_NAME"

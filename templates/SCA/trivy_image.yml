@@ -6,8 +6,6 @@
     GIT_STRATEGY: none
     FURTHER_PARAMETERS: ""
     SO_UPLOAD: "true"
-    SO_PARSER_NAME: "CycloneDX"
-    SO_FILE_NAME: "$REPORT_NAME"
   script:
     - /entrypoints/entrypoint_trivy_image.sh
   interruptible: true

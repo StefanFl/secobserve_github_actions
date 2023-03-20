@@ -11,6 +11,9 @@ else
   WORKSPACE="${GITHUB_WORKSPACE}"
 fi
 
+export SO_FILE_NAME="${REPORT_NAME}"
+export SO_PARSER_NAME="OWASP ZAP"
+
 cd "$WORKSPACE"
 mkdir /zap/wrk
 /zap/$SCRIPT -t "$TARGET" $FURTHER_PARAMETERS -J "$REPORT_NAME" || true

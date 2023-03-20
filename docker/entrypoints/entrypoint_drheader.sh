@@ -11,6 +11,9 @@ else
   WORKSPACE="${GITHUB_WORKSPACE}"
 fi
 
+export SO_FILE_NAME="${REPORT_NAME}"
+export SO_PARSER_NAME="DrHeader"
+
 cd "$WORKSPACE"
 drheader scan single $FURTHER_PARAMETERS --no-error --rules "$RULES" --json "$TARGET" >"$REPORT_NAME"
 

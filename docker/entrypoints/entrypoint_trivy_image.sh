@@ -13,6 +13,9 @@ else
   WORKSPACE="${GITHUB_WORKSPACE}"
 fi
 
+export SO_FILE_NAME="${REPORT_NAME}"
+export SO_PARSER_NAME="CycloneDX"
+
 cd "$WORKSPACE"
 docker pull "$TARGET"
 trivy image $FURTHER_PARAMETERS --exit-code 0 --format cyclonedx --security-checks vuln --output "$REPORT_NAME" "$TARGET"

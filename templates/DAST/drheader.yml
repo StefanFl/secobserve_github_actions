@@ -7,8 +7,6 @@
     FURTHER_PARAMETERS: ""
     RULES: "/rules.yml"
     SO_UPLOAD: "true"
-    SO_PARSER_NAME: "DrHeader"
-    SO_FILE_NAME: "$REPORT_NAME"
   script:
     - /entrypoints/entrypoint_drheader.sh
   interruptible: true

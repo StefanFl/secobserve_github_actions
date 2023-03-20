@@ -7,8 +7,6 @@
     FURTHER_PARAMETERS: ""
     SCRIPT: "zap-baseline.py"
     SO_UPLOAD: "true"
-    SO_PARSER_NAME: "OWASP ZAP"
-    SO_FILE_NAME: "$REPORT_NAME"
   script:
     - /entrypoints/entrypoint_owasp_zap.sh
   interruptible: true

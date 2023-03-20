@@ -11,6 +11,9 @@ else
   WORKSPACE="${GITHUB_WORKSPACE}"
 fi
 
+export SO_FILE_NAME="${REPORT_NAME}"
+export SO_PARSER_NAME="Sarif"
+
 cd "$RUN_DIRECTORY"
 npm install
 npx eslint $FURTHER_PARAMETERS --ignore-pattern ./node_modules/ --format @microsoft/eslint-formatter-sarif --output-file "$WORKSPACE/$REPORT_NAME" "$TARGET"

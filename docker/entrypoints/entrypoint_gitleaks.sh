@@ -11,6 +11,9 @@ else
   WORKSPACE="${GITHUB_WORKSPACE}"
 fi
 
+export SO_FILE_NAME="${REPORT_NAME}"
+export SO_PARSER_NAME="Sarif"
+
 git config --global --add safe.directory "$WORKSPACE"
 cd "$RUN_DIRECTORY"
 gitleaks detect $FURTHER_PARAMETERS --exit-code 0 --no-git --redact --report-format sarif --report-path "$WORKSPACE/$REPORT_NAME"
