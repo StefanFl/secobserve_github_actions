@@ -11,9 +11,9 @@ checkov==2.2.335  # https://github.com/bridgecrewio/checkov
 # ----------------------------------------------------------------
 semgrep==1.9.0  # https://github.com/returntocorp/semgrep
 
-# SSLyze
+# CryptoLyzer
 # ----------------------------------------------------------------
-sslyze==5.1.1  # https://github.com/nabla-c0d3/sslyze
+CryptoLyzer==0.8.4  # https://gitlab.com/coroner/cryptolyzer
 
 # Importer
 # ----------------------------------------------------------------

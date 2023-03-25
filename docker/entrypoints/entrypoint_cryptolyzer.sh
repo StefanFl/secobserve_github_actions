@@ -12,10 +12,10 @@ else
 fi
 
 export SO_FILE_NAME="${REPORT_NAME}"
-export SO_PARSER_NAME="SSLyze"
+export SO_PARSER_NAME="CryptoLyzer"
 
 cd "$WORKSPACE"
-sslyze $FURTHER_PARAMETERS --json_out "$REPORT_NAME" "$TARGET"
+cryptolyze $FURTHER_PARAMETERS --output-format json "$TARGET" >"$REPORT_NAME"
 
 if [ "$SO_UPLOAD" == "true" ]; then
   source file_upload_observations.sh

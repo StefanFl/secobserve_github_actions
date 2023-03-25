@@ -1,4 +1,4 @@
-.sslyze:
+.cryptolyzer:
   image:
     name: stefanfle/secobserve-scanners:dev
   stage: post_deploy
@@ -7,7 +7,7 @@
     FURTHER_PARAMETERS: ""
     SO_UPLOAD: "true"
   script:
-    - /entrypoints/entrypoint_sslyze.sh
+    - /entrypoints/entrypoint_cryptolyzer.sh
   interruptible: true
   allow_failure: true
   artifacts:

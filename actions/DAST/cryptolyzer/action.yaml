@@ -1,5 +1,5 @@
-name: 'SecObserve SSLyze'
-description: 'Scans TLS encryption for vulnerabilities with SSLyze'
+name: 'SecObserve CryptoLyzer'
+description: 'Scans TLS encryption for vulnerabilities with CryptoLyzer'
 author: 'MaibornWolff'
 
 inputs:
@@ -40,7 +40,7 @@ inputs:
 runs:
   using: 'docker'
   image: 'docker://stefanfle/secobserve-scanners:dev'
-  entrypoint: '/entrypoints/entrypoint_sslyze.sh'
+  entrypoint: '/entrypoints/entrypoint_cryptolyzer.sh'
   env:
     TARGET: ${{ inputs.target }}
     REPORT_NAME: ${{ inputs.report_name }}
