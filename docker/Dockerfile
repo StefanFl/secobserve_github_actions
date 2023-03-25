@@ -39,6 +39,9 @@ COPY --from=python-build-stage /usr/src/app/wheels  /wheels/
 RUN pip install --no-cache-dir --no-index --find-links=/wheels/ /wheels/* \
 	&& rm -rf /wheels/ && rm -rf /tmp
 
+# Hack because Python's find_library doesn't work on Alpine
+RUN sed -i -e "s|get_library('crypto', 'libcrypto\.dylib', '42')|'/usr/lib/libcrypto\.so'|g" /usr/local/lib/python3.11/site-packages/oscrypto/_openssl/_libcrypto_cffi.py
+
 # copy and install precompiled DrHeader library and rules
 COPY docker/drheader/drheader-1.7.0-py2.py3-none-any.whl docker/drheader/rules.yml ./
 RUN pip install --no-cache-dir ./drheader-1.7.0-py2.py3-none-any.whl
