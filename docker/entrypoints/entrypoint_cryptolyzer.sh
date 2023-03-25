@@ -15,7 +15,7 @@ export SO_FILE_NAME="${REPORT_NAME}"
 export SO_PARSER_NAME="CryptoLyzer"
 
 cd "$WORKSPACE"
-cryptolyze $FURTHER_PARAMETERS --output-format json "$TARGET" >"$REPORT_NAME"
+cryptolyze $FURTHER_PARAMETERS --output-format json tls all "$TARGET" >"$REPORT_NAME"
 
 if [ "$SO_UPLOAD" == "true" ]; then
   source file_upload_observations.sh
